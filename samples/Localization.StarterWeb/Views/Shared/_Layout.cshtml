@@ -1,8 +1,13 @@
 ﻿@using System.Globalization
 @using Microsoft.AspNet.Http.Features
 @using Microsoft.AspNet.Localization
+@using Microsoft.AspNet.Mvc.Localization
+
+@* TODO: Doc this *@
+@inject IHtmlLocalizerFactory LocalizerFactory
 
 @{
+    var localizer = LocalizerFactory.Create(baseName: "Views.Shared.Layout.cshtml", location: "Localization.StarterWeb");
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
 }
 
