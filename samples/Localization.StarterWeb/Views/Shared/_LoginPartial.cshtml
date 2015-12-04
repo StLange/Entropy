@@ -1,14 +1,24 @@
 ﻿@using System.Security.Claims
+@using Microsoft.AspNet.Localization
+@using Microsoft.AspNet.Mvc.Localization
+
+@inject IHtmlLocalizerFactory LocalizerFactory
+@{
+    var localizer = LocalizerFactory.Create(baseName: "Views.Shared._LoginPartial.cshtml", location: "Localization.StarterWeb");
+}
 
 @if (User.IsSignedIn())
 {
     <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @User.GetUserName()!</a>
+                <a asp-controller="Manage" asp-action="Index" title="@localizer["Manage"]">
+                    @* You can parameterize resource strings and the IHtmlLocalizer will HTML encode the parameters only *@
+                    @localizer["Hello {0}!", User.GetUserName()]
+                </a>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">@localizer["Log off"]</button>
             </li>
         </ul>
     </form>
@@ -16,7 +26,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+        <li><a asp-controller="Account" asp-action="Register">@localizer["Register"]</a></li>
+        <li><a asp-controller="Account" asp-action="Login">@localizer["Log in"]</a></li>
     </ul>
 }

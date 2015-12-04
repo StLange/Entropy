@@ -1,11 +1,5 @@
 ﻿@using Microsoft.AspNet.Mvc.Localization
 
-@* The IViewLocalizer can be injected into the view. It does two things of interest:
-     1. It HTML encodes *parameters* passed to resource strings (not the resource strings themselves, as they may contain
-        HTML) automatically, and returns the result as an HtmlString so Razor won't HTML encode it again;
-     2. It looks for localization resources for this view based on the view path, e.g. if the view's path is
-        "/Views/Home/About.cshtml", then the corresponding resource base path will be "Views.Home.About.cshtml" *@
-
 @inject IViewLocalizer Localizer
 
 @{
